@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatSocket"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="chat socket" Height="450" Width="800" ResizeMode="NoResize" Cursor="SizeNWSE" AllowDrop="True">
     <Grid>
         <TextBox x:Name="txtIndirizzoIP" HorizontalAlignment="Left" Margin="526,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="35"/>
         <TextBox x:Name="txtPorta" HorizontalAlignment="Left" Margin="526,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="35"/>
@@ -16,9 +16,12 @@
         <Label Content="Inserire porta" HorizontalAlignment="Left" Margin="526,164,0,0" VerticalAlignment="Top" Width="181"/>
         <Label Content="Inserire messaggio" HorizontalAlignment="Left" Margin="526,235,0,0" VerticalAlignment="Top" Width="181"/>
         <Label Content="Chatter 2.0" HorizontalAlignment="Left" Height="50" Margin="98,30,0,0" VerticalAlignment="Top" Width="266" FontSize="24" FontFamily="Segoe Script"/>
-        <Label Content="Il tuo indirizzo IP" HorizontalAlignment="Left" Margin="369,30,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
-        <Label x:Name="lblIP" Content="" HorizontalAlignment="Left" Margin="369,85,0,0" VerticalAlignment="Top" Height="300" Width="152"/>
+        <Label Content="Il tuo indirizzo IP" HorizontalAlignment="Left" Margin="374,85,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
+        <Label x:Name="lblIP" Content="" HorizontalAlignment="Left" Margin="374,140,0,0" VerticalAlignment="Top" Height="56" Width="152"/>
         <Label Content="Invia un messaggio" HorizontalAlignment="Left" Margin="526,30,0,0" VerticalAlignment="Top" Height="50" Width="181"/>
+        <Label Content="Il tuo indirizzo IP" HorizontalAlignment="Left" Margin="917,101,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
+        <Label Content="Il tuo indirizzo IP" HorizontalAlignment="Left" Margin="374,85,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
+        <Label x:Name="lblPorta" Content="porta: " HorizontalAlignment="Left" Margin="374,30,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
 
     </Grid>
 </Window>

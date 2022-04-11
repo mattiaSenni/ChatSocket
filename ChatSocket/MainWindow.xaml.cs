@@ -24,7 +24,8 @@ namespace ChatSocket
     public partial class MainWindow : Window
     {
         Socket socket = null;
-        DispatcherTimer dispatch = null;
+        DispatcherTimer dTimer = null;
+        int WELL_KNOWN_PORT = 65000;
         public MainWindow()
         {
             InitializeComponent();
@@ -36,7 +37,9 @@ namespace ChatSocket
             ProtocolType: il tipo di protocollo da usare -> UDP
              */
             IPAddress local_address = IPAddress.Any;
-            IPEndPoint local_endpoint = new IPEndPoint(local_address.MapToIPv4(), 65300);
+            IPEndPoint local_endpoint = new IPEndPoint(local_address.MapToIPv4(), WELL_KNOWN_PORT);
+
+            lblPorta.Content = lblPorta.Content += " " + WELL_KNOWN_PORT;
             /*
              chiedo al S.O. l'indirizzo IP del sistema, poi creo un endpoint sulla porta 65000
             questo è l'endpoint del mittente
@@ -44,24 +47,53 @@ namespace ChatSocket
 
             socket.Bind(local_endpoint); //unisce la socket all'endpoint
 
-            lblIP.Content = local_endpoint;
+            //lblIP.Content = local_endpoint;
+
+            dTimer = new DispatcherTimer();
+
+            // dico cosa devo fare a ogni timer
+            dTimer.Tick += new EventHandler(aggiornamento_dTimer);
+            // inserisco ogni quanto deve chiamare l'evento il timer (ogni 250ms)
+            dTimer.Interval = new TimeSpan(0, 0, 0, 0, 250);
+            dTimer.Start();
 
             //// to get user private's ip
-            //string IPAddress = "";
-            //IPHostEntry Host = default(IPHostEntry);
-            //string Hostname = null;
-            //Hostname = System.Environment.MachineName;
-            //Host = Dns.GetHostEntry(Hostname);
-            //foreach (IPAddress IP in Host.AddressList)
-            //{
-            //    if (IP.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-            //    {
-            //        IPAddress += Convert.ToString(IP) + "\n";
-            //    }
-            //}
+            string ipa= "";
+            IPHostEntry Host = default(IPHostEntry);
+            string Hostname = null;
+            Hostname = System.Environment.MachineName;
+            Host = Dns.GetHostEntry(Hostname);
+            foreach (IPAddress IP in Host.AddressList)
+            {
+                if (IP.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    ipa += Convert.ToString(IP) + "\n";
+                }
+            }
 
-            //lblIP.Content = IPAddress;
+            lblIP.Content = ipa;
 
+        }
+
+        private void aggiornamento_dTimer(object sender, EventArgs e)
+        {
+            int nBytes = 0;
+            if((nBytes = socket.Available) > 0)
+            {
+                //ricezione dei caratteri in attesa
+                byte[] buffer = new byte[nBytes];
+
+                // ancora non so chi mi manda i dati
+                EndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any, 0);
+
+                // riceve i dati della socket, inoltre scrive i dati del mittente nell'endpoint
+                nBytes = socket.ReceiveFrom(buffer, ref remoteEndPoint);
+
+                string from = ((IPEndPoint)remoteEndPoint).Address.ToString();
+                string messaggio = Encoding.UTF8.GetString(buffer, 0, nBytes);
+
+                lstChat.Items.Add(from + ": " + messaggio);
+            }
         }
 
         private void btnInvia_Click(object sender, RoutedEventArgs e)

@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "E925Cvt7BcK/GFglqpM8rTuJVT0OhY/JcxwknJnU6bbVq6rOGuOXTPbDyF6+RNF5laFsDjmvELpVEiVlZO/WJA==",
+  "dgSpecHash": "qSprw4wvMsRPab3Dj11TQXKzc34G8bPR/jWp/9uOUkxy8uq3vBuedfRn753GQnjZceRyTT+IN2obUpNLdNJj8A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mattia.senni\\Desktop\\ChatSocket\\ChatSocket\\ChatSocket.csproj",
+  "projectFilePath": "C:\\Users\\mattia.senni.ITT\\Desktop\\ChatSocket\\ChatSocket\\ChatSocket.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mattia.senni\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.17\\microsoft.netcore.app.host.win-x64.3.1.17.nupkg.sha512"
+    "C:\\Users\\mattia.senni.ITT\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512"
   ],
   "logs": []
 }
