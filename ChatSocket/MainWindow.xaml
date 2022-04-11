@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatSocket"
         mc:Ignorable="d"
-        Title="chat socket" Height="450" Width="800" ResizeMode="NoResize" Cursor="SizeNWSE" AllowDrop="True">
+        Title="chat socket" Height="450" Width="800" ResizeMode="NoResize" Cursor="Cross" AllowDrop="True">
     <Grid>
         <TextBox x:Name="txtIndirizzoIP" HorizontalAlignment="Left" Margin="526,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="35"/>
         <TextBox x:Name="txtPorta" HorizontalAlignment="Left" Margin="526,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="35"/>
