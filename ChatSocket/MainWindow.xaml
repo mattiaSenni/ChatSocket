@@ -1,0 +1,24 @@
+﻿<Window x:Class="ChatSocket.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChatSocket"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBox x:Name="txtIndirizzoIP" HorizontalAlignment="Left" Margin="526,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="35"/>
+        <TextBox x:Name="txtPorta" HorizontalAlignment="Left" Margin="526,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="35"/>
+        <TextBox x:Name="txtMessaggio" HorizontalAlignment="Left" Margin="526,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="79"/>
+        <Button x:Name="btnInvia" Content="Invia" HorizontalAlignment="Left" Margin="526,350,0,0" VerticalAlignment="Top" Height="35" Width="181" Click="btnInvia_Click"/>
+        <ListBox x:Name="lstChat" Margin="98,85,436,49"/>
+        <Label Content="Inserire un indirizzo IP" HorizontalAlignment="Left" Margin="526,85,0,0" VerticalAlignment="Top" Width="181" Height="34"/>
+        <Label Content="Inserire porta" HorizontalAlignment="Left" Margin="526,164,0,0" VerticalAlignment="Top" Width="181"/>
+        <Label Content="Inserire messaggio" HorizontalAlignment="Left" Margin="526,235,0,0" VerticalAlignment="Top" Width="181"/>
+        <Label Content="Chatter 2.0" HorizontalAlignment="Left" Height="50" Margin="98,30,0,0" VerticalAlignment="Top" Width="266" FontSize="24" FontFamily="Segoe Script"/>
+        <Label Content="Il tuo indirizzo IP" HorizontalAlignment="Left" Margin="369,30,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
+        <Label x:Name="lblIP" Content="" HorizontalAlignment="Left" Margin="369,85,0,0" VerticalAlignment="Top" Height="300" Width="152"/>
+        <Label Content="Invia un messaggio" HorizontalAlignment="Left" Margin="526,30,0,0" VerticalAlignment="Top" Height="50" Width="181"/>
+
+    </Grid>
+</Window>
