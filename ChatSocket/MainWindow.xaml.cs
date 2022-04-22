@@ -15,6 +15,9 @@ using System.Windows.Shapes;
 using System.Net.Sockets;
 using System.Net;
 using System.Windows.Threading;
+using System.Threading;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace ChatSocket
 {
@@ -26,9 +29,12 @@ namespace ChatSocket
         Socket socket = null;
         DispatcherTimer dTimer = null;
         int WELL_KNOWN_PORT = 65000;
+        List<Contatto> contatti;
         public MainWindow()
         {
             InitializeComponent();
+            Deserialize();
+
 
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             /*
@@ -36,29 +42,11 @@ namespace ChatSocket
             SocketType: Dgram per UDP, Stream per TCP
             ProtocolType: il tipo di protocollo da usare -> UDP
              */
-            IPAddress local_address = IPAddress.Any;
-            IPEndPoint local_endpoint = new IPEndPoint(local_address.MapToIPv4(), WELL_KNOWN_PORT);
 
             lblPorta.Content = lblPorta.Content += " " + WELL_KNOWN_PORT;
-            /*
-             chiedo al S.O. l'indirizzo IP del sistema, poi creo un endpoint sulla porta 65000
-            questo è l'endpoint del mittente
-             */
-
-            socket.Bind(local_endpoint); //unisce la socket all'endpoint
-
-            //lblIP.Content = local_endpoint;
-
-            dTimer = new DispatcherTimer();
-
-            // dico cosa devo fare a ogni timer
-            dTimer.Tick += new EventHandler(aggiornamento_dTimer);
-            // inserisco ogni quanto deve chiamare l'evento il timer (ogni 250ms)
-            dTimer.Interval = new TimeSpan(0, 0, 0, 0, 250);
-            dTimer.Start();
 
             //// to get user private's ip
-            string ipa= "";
+            string ipa = "";
             IPHostEntry Host = default(IPHostEntry);
             string Hostname = null;
             Hostname = System.Environment.MachineName;
@@ -72,10 +60,55 @@ namespace ChatSocket
             }
 
             lblIP.Content = ipa;
-
+            Thread listen = new Thread(new ThreadStart(socketInListen));
+            listen.Start();
         }
 
-        private void aggiornamento_dTimer(object sender, EventArgs e)
+        private void update(List<Contatto> c)
+        {
+            contatti = c;
+            Serialize();
+        }
+
+        private void Serialize()
+        {
+            XmlSerializer xmls = new XmlSerializer(typeof(List<Contatto>));
+            TextWriter tw = new StreamWriter("agenda.xml");
+            xmls.Serialize(tw, contatti);
+            tw.Close();
+        }
+
+        private void Deserialize()
+        {
+            XmlSerializer xmls = new XmlSerializer(typeof(List<Contatto>));
+            TextReader tr = new StreamReader("agenda.xml");
+            contatti = (List<Contatto>)xmls.Deserialize(tr);
+            tr.Close();
+        }
+
+        private void socketInListen()
+        {
+            IPAddress local_address = IPAddress.Any;
+            IPEndPoint local_endpoint = new IPEndPoint(local_address.MapToIPv4(), WELL_KNOWN_PORT);
+            /*
+             chiedo al S.O. l'indirizzo IP del sistema, poi creo un endpoint sulla porta 65000
+            questo è l'endpoint del mittente
+             */
+
+            
+
+            socket.Bind(local_endpoint); //unisce la socket all'endpoint
+
+            while (true)
+            {
+                aggiornamento_dTimer();
+            }
+
+
+            
+        }
+
+        private void aggiornamento_dTimer()
         {
             int nBytes = 0;
             if((nBytes = socket.Available) > 0)
@@ -91,27 +124,27 @@ namespace ChatSocket
 
                 string from = ((IPEndPoint)remoteEndPoint).Address.ToString();
                 string messaggio = Encoding.UTF8.GetString(buffer, 0, nBytes);
+                string name = from;
+                for (int i = 0; i < contatti.Count(); i++)
+                {
+                    if (contatti[i].IP == from)
+                    {
+                        name = contatti[i].Nome;
+                    }
+                }
 
-                lstChat.Items.Add(from + ": " + messaggio);
+                Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    lstChat.Items.Add(name + ": " + messaggio);
+                }));
             }
         }
 
-        private void btnInvia_Click(object sender, RoutedEventArgs e)
+        
+        private void btnSendMessage_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                IPAddress remote_address = IPAddress.Parse(txtIndirizzoIP.Text);
-                IPEndPoint remote_endpoint = new IPEndPoint(remote_address, int.Parse(txtPorta.Text));
-
-                // converto il messaggio in un array di byte mediante la codifica UTF-8
-                byte[] messaggio = Encoding.UTF8.GetBytes(txtMessaggio.Text);
-
-                //invio in maniera asincrona il messaggio al destinatario
-                socket.SendTo(messaggio, remote_endpoint);
-            }catch(Exception ex)
-            {
-                MessageBox.Show("Attenzione: qualcosa è andato storto durante l'invio del messaggio");
-            }
+            InvioMessaggi im = new InvioMessaggi(contatti, update);
+            im.Show();
         }
     }
 }

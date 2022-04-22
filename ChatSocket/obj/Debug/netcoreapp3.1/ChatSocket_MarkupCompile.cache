@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\mattia.senni.ITT\Desktop\ChatSocket\ChatSocket\obj\Debug\netcoreapp3.1\
+C:\Users\matti\Desktop\chatSocket\ChatSocket\obj\Debug\netcoreapp3.1\
 ChatSocket
 none
 false
 TRACE;DEBUG;NETCOREAPP;NETCOREAPP3_1;
-C:\Users\mattia.senni.ITT\Desktop\ChatSocket\ChatSocket\App.xaml
-11407045341
+C:\Users\matti\Desktop\chatSocket\ChatSocket\App.xaml
+3-62184869
 
-3-1233169557
+6-1731801175
 192-1533232326
-MainWindow.xaml;
+AggiungiContatto.xaml;InvioMessaggi.xaml;MainWindow.xaml;
 
 False
 

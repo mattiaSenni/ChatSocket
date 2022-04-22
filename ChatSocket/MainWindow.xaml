@@ -5,23 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChatSocket"
         mc:Ignorable="d"
-        Title="chat socket" Height="450" Width="800" ResizeMode="NoResize" Cursor="Cross" AllowDrop="True">
+        Title="chat socket" Height="450" Width="598" ResizeMode="NoResize" Cursor="Cross" AllowDrop="True">
     <Grid>
-        <TextBox x:Name="txtIndirizzoIP" HorizontalAlignment="Left" Margin="526,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="35"/>
-        <TextBox x:Name="txtPorta" HorizontalAlignment="Left" Margin="526,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="35"/>
-        <TextBox x:Name="txtMessaggio" HorizontalAlignment="Left" Margin="526,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Height="79"/>
-        <Button x:Name="btnInvia" Content="Invia" HorizontalAlignment="Left" Margin="526,350,0,0" VerticalAlignment="Top" Height="35" Width="181" Click="btnInvia_Click"/>
-        <ListBox x:Name="lstChat" Margin="98,85,436,49"/>
-        <Label Content="Inserire un indirizzo IP" HorizontalAlignment="Left" Margin="526,85,0,0" VerticalAlignment="Top" Width="181" Height="34"/>
-        <Label Content="Inserire porta" HorizontalAlignment="Left" Margin="526,164,0,0" VerticalAlignment="Top" Width="181"/>
-        <Label Content="Inserire messaggio" HorizontalAlignment="Left" Margin="526,235,0,0" VerticalAlignment="Top" Width="181"/>
-        <Label Content="Chatter 2.0" HorizontalAlignment="Left" Height="50" Margin="98,30,0,0" VerticalAlignment="Top" Width="266" FontSize="24" FontFamily="Segoe Script"/>
-        <Label Content="Il tuo indirizzo IP" HorizontalAlignment="Left" Margin="374,85,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
-        <Label x:Name="lblIP" Content="" HorizontalAlignment="Left" Margin="374,140,0,0" VerticalAlignment="Top" Height="56" Width="152"/>
-        <Label Content="Invia un messaggio" HorizontalAlignment="Left" Margin="526,30,0,0" VerticalAlignment="Top" Height="50" Width="181"/>
+        <ListBox x:Name="lstChat" Margin="74,85,299,49"/>
+        <Label Content="Chatter 2.0" HorizontalAlignment="Left" Height="50" Margin="74,30,0,0" VerticalAlignment="Top" Width="290" FontSize="24" FontFamily="Segoe Script"/>
+        <Label Content="Il tuo indirizzo IP" HorizontalAlignment="Left" Margin="336,85,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
+        <Label x:Name="lblIP" Content="" HorizontalAlignment="Left" Margin="335,140,0,0" VerticalAlignment="Top" Height="56" Width="191"/>
         <Label Content="Il tuo indirizzo IP" HorizontalAlignment="Left" Margin="917,101,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
-        <Label Content="Il tuo indirizzo IP" HorizontalAlignment="Left" Margin="374,85,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
-        <Label x:Name="lblPorta" Content="porta: " HorizontalAlignment="Left" Margin="374,30,0,0" VerticalAlignment="Top" Height="50" Width="152"/>
+        <Label Content="" HorizontalAlignment="Left" Margin="336,140,0,0" VerticalAlignment="Top" Height="50" Width="192"/>
+        <Label x:Name="lblPorta" Content="porta: " HorizontalAlignment="Left" Margin="335,30,0,0" VerticalAlignment="Top" Height="50" Width="191"/>
+        <Button x:Name="btnSendMessage" Content="Invia un messaggio" HorizontalAlignment="Left" Margin="335,279,0,0" VerticalAlignment="Top" Height="46" Width="194" Click="btnSendMessage_Click" />
 
     </Grid>
 </Window>
